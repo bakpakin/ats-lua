@@ -1,4 +1,4 @@
 node_modules
-BUILD
-bin
+BUILD/*.c
+bin/atscc2lua
 
