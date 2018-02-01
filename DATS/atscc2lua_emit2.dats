@@ -1379,7 +1379,7 @@ val-ATSINSflab (fl) = ins_fl.instr_node
 val () = emit_nspc (out, 6)
 val () =
 (
-  emit_text (out, "elseif fublab == ");
+  emit_text (out, "elseif fublab_lua == ");
   emit_int (out, i); emit_text (out, " then")
 )
 val () = emit_ENDL (out)
