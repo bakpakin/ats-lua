@@ -26,7 +26,7 @@ npm-install:: ; $(NPM) install
 
 ######
 
-cleanall:: ; rm -f node_modules -r
+cleanall:: ; rm -rf node_modules
 cleanall:: ; rm -f package-lock.json
 
 ######

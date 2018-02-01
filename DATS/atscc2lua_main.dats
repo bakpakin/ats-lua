@@ -159,9 +159,9 @@ val () = emit_time_stamp(out)
 val ((*void*)) = emit_toplevel(out, d0cs)
 //
 val () =
-emit_text (out, "\n/* ****** ****** */\n")
+emit_text (out, "\n--[[ ------ ------ ]]\n")
 val () =
-emit_text (out, "\n/* end-of-compilation-unit */")
+emit_text (out, "\n--[[ end-of-compilation-unit ]]")
 //
 val ((*flusing*)) = emit_newline(out)
 //
