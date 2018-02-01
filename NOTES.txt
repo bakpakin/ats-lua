@@ -1,0 +1,33 @@
+######
+#Brief notes on Atscc2lua development:
+######
+
+HX-2018-01-31:
+
+Setting things up.
+
+The key steps involved in building the
+transpiler atscc2lua:
+
+Step 1:
+#
+# catsparsemit
+#
+make npm-install
+
+Step 2:
+
+make all # for building atscc2lua
+
+The executable atscc2lua is generated in
+the ./bin directory.
+
+######
+
+The code for atscc2lua stays in the DATS directory:
+
+atscc2lua_main.dats // For command-line support
+atscc2lua_emit.dats // For stuff common to atsccomp
+atscc2lua_emit2.dats // For stuff specific to atscc2lua
+
+###### end of [NOTES.txt] ######
