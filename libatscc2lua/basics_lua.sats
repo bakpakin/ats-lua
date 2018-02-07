@@ -1,8 +1,8 @@
+(* ****** ****** *)
 (*
 ** For writing ATS code
 ** that translates into JavaScript
 *)
-
 (* ****** ****** *)
 //
 // HX-2014-08:
@@ -12,7 +12,7 @@
 ATS_PACKNAME
 "ATSCC2LUA.basics"
 #define
-ATS_EXTERN_PREFIX "ats2jspre_"
+ATS_EXTERN_PREFIX "ats2luapre_"
 //
 (* ****** ****** *)
 //
@@ -42,8 +42,6 @@ abstype LUAdate // new Date()
 //
 abstype LUAfilr // nominal!
 //
-abstype LUAregexp // new RegExp()
-//
 (* ****** ****** *)
 //
 abstype LUAarray(a:vt@ype) // [...]
@@ -70,4 +68,4 @@ fun2cloref3
 //
 (* ****** ****** *)
 
-(* end of [basics_js.sats] *)
+(* end of [basics_lua.sats] *)
