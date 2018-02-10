@@ -12,6 +12,9 @@ LIBATSCC2LUA_targetloc
 //
 (* ****** ****** *)
 //
+#define
+ATS_EXTERN_PREFIX "ats2luapre_"
+//
 #include
 "{$LIBATSCC2LUA}/mylibies.hats"
 //

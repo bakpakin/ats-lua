@@ -9,7 +9,7 @@
 //
 (* ****** ****** *)
 //
-#staload "./basics_lua.sats"
+#staload "./SATS/basics.sats"
 //
 (* ****** ****** *)
 //
@@ -19,6 +19,7 @@
 //
 #staload "./SATS/bool.sats"
 #staload "./SATS/float.sats"
+#staload "./SATS/print.sats"
 //
 (* ****** ****** *)
 

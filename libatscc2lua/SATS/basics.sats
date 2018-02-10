@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For writing ATS code
-** that translates into JavaScript
+** that translates into Lua
 *)
 (* ****** ****** *)
 //
@@ -21,33 +21,24 @@ LIBATSCC_targetloc
 "$PATSHOME/contrib/libatscc"
 //
 (* ****** ****** *)
-//
-#include "{$LIBATSCC}/basics.sats"
-//
-(* ****** ****** *)
 (*
 typedef char = int
 *)
 (* ****** ****** *)
 //
-(*
-abstype LUAnumber
-abstype LUAboolean
-abstype LUAstring
-*)
-//
-abstype LUAobj // generic
-//
-abstype LUAdate // new Date()
-//
-abstype LUAfilr // nominal!
+abstype LuaNumber
+abstype LuaTable
+abstype LuaString
+abstype LuaThread
+abstype LuaFunction
+abstype LuaBoolean
+abstype LuaUserdata
 //
 (* ****** ****** *)
 //
-abstype LUAarray(a:vt@ype) // [...]
-abstype LUAobjmap(a:vt@ype) // {...}
+abstype LuaTable(a:vt@ype) // [...]
 //
-(* ****** ****** *)
+(* ****** ****** *
 //
 fun
 fun2cloref0
@@ -66,6 +57,6 @@ fun2cloref3
 {a1,a2,a3:t@ype}{res:t@ype}
   (fopr: (a1, a2, a3) -> res): cfun(a1, a2, a3, res) = "mac#%"
 //
-(* ****** ****** *)
+* ****** ****** *)
 
 (* end of [basics_lua.sats] *)
