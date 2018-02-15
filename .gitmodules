@@ -1,0 +1,3 @@
+[submodule "libatscc2lua"]
+	path = libatscc2lua
+	url = git@github.com:bakpakin/libatscc2lua.git
