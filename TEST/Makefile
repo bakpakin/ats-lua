@@ -21,7 +21,7 @@ DATSLUA = $(patsubst ./%.dats,./output/%_dats.lua,$(DATS))
 all: $(DATSLUA)
 
 ./output/%_dats.lua: ./%.dats
-	$(PATSOPT) -d $< | $(ATSCC2LUA) -o $@ -i
+	$(PATSOPT) -d $< | $(ATSCC2LUA) -r -o $@ -i
 
 clean:
 	$(RMF) $(DATSLUA)

@@ -11,3 +11,11 @@ ATS. We can use patscc to compile foo.dats into foo_dats.c (which
 contains code written in a small subset of C) and then use atscc2lua
 to transpile foo_dats.c into foo_dats.lua that contains Lua code
 corresponding to the ATS program in foo.dats.
+
+## atscc2lua
+
+The code for atscc2lua stays in the DATS directory:
+
+atscc2lua_main.dats // For command-line support
+atscc2lua_emit.dats // For stuff common to atsccomp
+atscc2lua_emit2.dats // For stuff specific to atscc2lua

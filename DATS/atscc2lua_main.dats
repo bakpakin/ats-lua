@@ -93,6 +93,13 @@ OUTCHAN =
 //
 (* ****** ****** *)
 
+datatype
+libkind =
+    | LKnone of ()
+    | LKrequire of ()
+
+(* ****** ****** *)
+
 fun
 outchan_get_fileref
   (x: OUTCHAN): FILEref =
@@ -114,6 +121,7 @@ cmdstate = @{
 , ninputfile= int // waiting for STDIN if it is 0
 , outchan= OUTCHAN // current output channel
 , nerror= int // number of accumulated errors
+, lk= libkind // How to include libatscc2lua
 } (* end of [cmdstate] *)
 
 (* ****** ****** *)
@@ -156,7 +164,12 @@ val d0cs = parse_from_fileref(inp)
 //
 val () = emit_time_stamp(out)
 //
-val ((*void*)) = emit_toplevel(out, d0cs)
+val () = (case state.lk of
+    | LKnone() => ()
+    | LKrequire() => emit_text(out, 
+        "\n--[[ require libats ]]\nrequire \"libatscc2lua\"\n"))
+//
+val () = emit_toplevel(out, d0cs)
 //
 val () =
 emit_text (out, "\n--[[ ------ ------ ]]\n")
@@ -344,6 +357,11 @@ val () =
 println! ("  --output <filename> : output into <filename>")
 //
 val () =
+println! ("  -r : require libatscc2lua in the output lua")
+val () =
+println! ("  --require : require libatscc2lua in the output lua")
+//
+val () =
 println! ("  -h : for printing out this help usage")
 val () =
 println! ("  --help : for printing out this help usage")
@@ -473,6 +491,11 @@ case+ key of
     val () = state.waitkind := WTKoutput()
   } (* end of [-o] *)
 //
+| "-r" =>
+  {
+    val () = state.lk := LKrequire()
+  }
+//
 | "-h" =>
   {
     val () = atscc2lua_usage("atscc2lua")
@@ -512,6 +535,11 @@ case+ key of
   {
     val () = state.waitkind := WTKoutput()
   } (* end of [--output] *)
+//
+| "--require" =>
+  {
+    val () = state.lk := LKrequire()
+  } (* end of [--require] *)
 //
 | "--help" => {
     val () = atscc2lua_usage("atscc2lua")
@@ -636,6 +664,7 @@ state = @{
 , ninputfile= ~1 // input files
 , outchan= OUTCHANref(stdout_ref)
 , nerror= 0 // number of accumulated errors
+, lk= LKnone()
 } : cmdstate // end of [var]
 //
 val () = process_cmdline(state, arglst)

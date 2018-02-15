@@ -22,13 +22,7 @@ make all # for building atscc2lua
 The executable atscc2lua is generated in
 the ./bin directory.
 
-######
 
-The code for atscc2lua stays in the DATS directory:
-
-atscc2lua_main.dats // For command-line support
-atscc2lua_emit.dats // For stuff common to atsccomp
-atscc2lua_emit2.dats // For stuff specific to atscc2lua
 
 ######
 

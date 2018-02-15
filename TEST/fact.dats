@@ -6,24 +6,19 @@
 //
 (* ****** ****** *)
 //
-#define
-LIBATSCC2LUA_targetloc
-  "./../libatscc2lua"
+#define LIBATSCC2LUA_targetloc "./../libatscc2lua"
 //
 (* ****** ****** *)
 //
 #define
 ATS_EXTERN_PREFIX "ats2luapre_"
 //
-#include
-"{$LIBATSCC2LUA}/mylibies.hats"
+#include "{$LIBATSCC2LUA}/HATS/staloadall.hats"
 //
 (* ****** ****** *)
 //
-#define
-ATS_MAINATSFLAG 1
-#define
-ATS_DYNLOADNAME "fact_dynload"
+#define ATS_MAINATSFLAG 1
+#define ATS_DYNLOADNAME "fact_dynload"
 //
 (* ****** ****** *)
 //
