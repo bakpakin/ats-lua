@@ -428,7 +428,7 @@ ins0.instr_node of
 //
     val () = emit_nspc (out, ind+2)
     val () =
-      emit_text (out, "if (tmplab_lua === 0) break\n")
+      emit_text (out, "if tmplab_lua == 0 then break end\n")
     // end of [val]
 //
     val () = emit_nspc (out, ind)
@@ -1306,11 +1306,13 @@ case+ inss of
     val () =
     emit_text
     (
-      out, "if funlab_lua > 0 then continue; else"
+      out, "if funlab_lua <= 0 then"
     ) (* end of [val] *)
-    val () = emit2_instr_ln (out, 1(*ind*), ins1)
+    val () = emit2_instr(out, 1, ins1)
+    val () = emit_nspc (out, 2)
+    val () = emit_text(out, "end\n")
 //
-    val () = emit_nspc (out, 2(*ind*))
+    val () = emit_nspc (out, 2)
     val () = emit_text (out, "end -- endwhile-fun\n")
 //
   in
@@ -1374,7 +1376,7 @@ val () = emit_nspc (out, 8)
 val () =
 emit_text
 (
-  out, "if (funlab_lua > 0) continue; else"
+  out, "if funlab_lua <= 0 then"
 ) (* end of [val] *)
 val () = emit2_instr_ln (out, 1(*ind*), ins1)
 //
