@@ -14,8 +14,4 @@ corresponding to the ATS program in foo.dats.
 
 ## atscc2lua
 
-The code for atscc2lua stays in the DATS directory:
-
-atscc2lua_main.dats // For command-line support
-atscc2lua_emit.dats // For stuff common to atsccomp
-atscc2lua_emit2.dats // For stuff specific to atscc2lua
+See WALKTHROUGH.md for more information on getting started with atscc2lua.
