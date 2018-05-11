@@ -685,7 +685,7 @@ case+ s0es of
     val () =
     (
       emit_text(out, "cenv");
-      emit_LBRACKET(out); emit_int(out, i+1); emit_RBRACKET(out)
+      emit_text(out, "{"); emit_int(out, i+1); emit_text(out, "}");
     ) (* end of [val] *)
   in
     aux1_envlst (out, s0es, i+1)

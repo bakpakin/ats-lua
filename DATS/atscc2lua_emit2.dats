@@ -368,9 +368,9 @@ ins0.instr_node of
 *)
 //
     val () = emit_nspc (out, ind)
-    val () = emit_text (out, "if (")
+    val () = emit_text (out, "if ")
     val () = emit_d0exp (out, d0e)
-    val ((*closing*)) = emit_text (out, ") then\n")
+    val ((*closing*)) = emit_text (out, " then\n")
     val () = emit2_instrlst (out, ind+2, inss)
     val () = emit_nspc (out, ind)
     val ((*closing*)) = emit_text (out, "end -- ifthen")
@@ -457,14 +457,14 @@ ins0.instr_node of
 | ATSINSlab (lab) =>
   {
     val () = emit_nspc (out, ind)
-    val () = emit_text (out, "case ")
+    val () = emit_text (out, "elseif tmplab_lua == ")
     val () =
     (
-      emit_tmplab_index (out, lab); emit_COLON (out)
+      emit_tmplab_index (out, lab);
     ) (* end of [val] *)
     val () =
     (
-      emit_text (out, " -- "); emit_label (out, lab)
+      emit_text (out, " then"); emit_label (out, lab)
     ) (* end of [val] *)
   } (* end of [ATSINSlab] *)
 //
@@ -808,7 +808,7 @@ val d0es = getarglst (inss)
 val () = emit_nspc (out, ind)
 val () = emit_tmpvar (out, tmp)
 val () = emit_text (out, " = ")
-val () = emit_LBRACKET (out)
+val () = emit_text (out, "{")
 val () =
 (
 case+ opt of
@@ -822,7 +822,7 @@ case+ opt of
 | Some _ => emit_d0explst_1 (out, d0es)
 ) : void // end of [val]
 //
-val () = emit_RBRACKET (out)
+val () = emit_text (out, "}")
 //
 in
   // nothing
@@ -860,9 +860,9 @@ val d0es = getarglst (inss)
 val () = emit_nspc (out, ind)
 val () = emit_tmpvar (out, tmp)
 val () = emit_text (out, " = ")
-val () = emit_LBRACKET (out)
+val () = emit_text (out, "{")
 val () = emit_d0explst (out, d0es)
-val () = emit_RBRACKET (out)
+val () = emit_text (out, "}")
 //
 in
   // nothing
