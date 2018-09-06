@@ -84,6 +84,8 @@ Several example programs and Makefiles are located in the `tests/` directory.
 Each test program contains a Makefile and can be compiled with `make`, and then run with `make run`.
 Try the triangle test program for the simplest test programs.
 
+Be sure to compile the main ats-lua program before building the example programs.
+
 ## Code overview of atscc2lua
 
 The code for atscc2lua is in the DATS directory. 
