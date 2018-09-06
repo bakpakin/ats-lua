@@ -444,7 +444,7 @@ d0e0.d0exp_node of
     (d0e, _(*arg*), _(*res*)) =>
   (
     emit_d0exp (out, d0e);
-    emit_LBRACKET (out); emit_int (out, 0); emit_RBRACKET (out)
+    emit_LBRACKET (out); emit_int (out, 1); emit_RBRACKET (out)
   ) (* end of [ATSfunclo_clo] *)
 //
 end // end of [emit_d0exp]
@@ -540,7 +540,7 @@ val () =
   emit_d0exp (out, d0rec)
 //
 val () = emit_LBRACKET (out)
-val () = emit_int (out, index)
+val () = emit_int (out, index + 1)
 val () = emit_RBRACKET (out)
 //
 in
@@ -580,7 +580,7 @@ val () =
   emit_d0exp (out, d0rec)
 //
 val () = emit_LBRACKET (out)
-val () = emit_int (out, index)
+val () = emit_int (out, index + 1)
 val () = emit_RBRACKET (out)
 //
 in

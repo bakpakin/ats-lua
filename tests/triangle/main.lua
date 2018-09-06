@@ -1,6 +1,4 @@
-package.preload['libatscc2lua'] = function()
-    return require('../../libatscc2lua')
-end
+package.path = package.path .. ";../../libatscc2lua/?.lua"
 
 require "output.triangle_dats"
 

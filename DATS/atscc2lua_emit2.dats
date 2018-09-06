@@ -418,16 +418,18 @@ ins0.instr_node of
     val () = emit_nspc (out, ind+2)
     val () = emit_text (out, "tmplab = tmplab_lua; tmplab_lua = 0")
     val () = emit_ENDL (out)
+    val () = emit_nspc (out, ind+2)
+    val () = emit_text (out, "repeat")
+    val () = emit_ENDL (out)
 //
-    val () = emit2_branchseqlst (out, ind+2, inss)
+    val () = emit2_branchseqlst (out, ind+4, inss)
+//
     val () = emit_nspc (out, ind+2)
-    val () = emit_text (out, "if tmplab_lua == 0 then")
-    val () = emit_ENDL (out)
-    val () = emit_nspc (out, ind+4)
-    val () = emit_text (out, "break")
-    val () = emit_ENDL (out)
+    val () = emit_text (out, "until true -- end-of-repeat\n")
+//
     val () = emit_nspc (out, ind+2)
-    val () = emit_text (out, "end -- end-of-label-ifelse\n")
+    val () = emit_text (out, "if tmplab_lua == 0 then break end")
+    val () = emit_ENDL (out)
 //
     val () = emit_nspc (out, ind)
     val () = emit_text (out, "end -- end-of-while\n")
@@ -455,7 +457,9 @@ ins0.instr_node of
 | ATSINSlab (lab) =>
   {
     val () = emit_nspc (out, ind-2)
-    val () = emit_text (out, "elseif tmplab_lua == ")
+    val () = emit_text (out, "end\n")
+    val () = emit_nspc (out, ind-2)
+    val () = emit_text (out, "if tmplab <= ")
     val () =
     (
       emit_tmplab_index (out, lab);
@@ -473,7 +477,7 @@ ins0.instr_node of
       emit_text (out, "do tmplab_lua = ")
     // end of [val]
     val () = emit_tmplab_index (out, lab)
-    val ((*closing*)) = emit_text (out, " break; end")
+    val ((*closing*)) = emit_text(out, "; break end")
   } (* end of [ATSINSgoto] *)
 //
 | ATSINSflab (flab) =>
@@ -706,7 +710,9 @@ case-
 ins0.instr_node of
 //
 | ATSbranchseq
-    (inss) => emit2_instrlst (out, ind, inss)
+    (inss) => (
+        emit2_instrlst (out, ind, inss)
+    )
   // end of [ATSbranchseq]
 //
 end (* end of [auxseq] *)
@@ -727,11 +733,7 @@ case+ inss of
     val () = emit_text (out, "-- ATSbranchseq_beg")
     val () = emit_ENDL (out)
     val () = emit_nspc (out, ind)
-    val () = emit_text (out, "if false then")
-    val () = emit_ENDL (out)
-    val () = emit_nspc (out, ind+2)
-    val () = emit_text (out, "return")
-    val () = emit_ENDL (out)
+    val () = emit_text (out, "do\n")
 //
     val () = auxseq (out, ind+2, ins)
 //
@@ -1313,7 +1315,7 @@ case+ inss of
     val () =
     emit_text
     (
-      out, "if funlab_lua <= 0 then "
+      out, "if funlab_lua <= 0 then"
     ) (* end of [val] *)
     val () = emit2_instr(out, 1, ins1)
     val () = emit_nspc (out, 1)
